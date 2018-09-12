@@ -14,7 +14,7 @@ SELECT
 SELECT
 	@curp AS 'curp',
   LENGTH(@curp) AS 'longitud',
-  IF (LENGTH(@curp)=18,'CORRECTA','INCORRECTA') as 'validacion';
+  IF (LENGTH(@curp)=18,'CORRECTA','INCORRECTA') AS 'validacion';
 
 -- realiza una consulta que muestre la curp
 -- y una columna que diga 'HOMBRE' o 'MUJER'
@@ -22,12 +22,12 @@ SELECT
 -- si es H o M, nombre de columnas curp, genero
 SELECT
 	@curp AS 'curp',
-  IF(SUBSTR(@curp,11,1)='H','HOMBRE','MUJER') AS 'genero';
+  IF (SUBSTR(@curp,11,1)='H','HOMBRE','MUJER') AS 'genero';
 
 -- resolver la consulta anterior con consulta anidada
 SELECT
 	c.curp,
-  IF(c.genero='H','HOMBRE','MUJER') AS 'hombreMujer'
+  IF (c.genero='H','HOMBRE','MUJER') AS 'hombreMujer'
 FROM
 	(SELECT
 		@curp AS 'curp',
