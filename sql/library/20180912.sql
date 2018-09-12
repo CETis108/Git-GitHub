@@ -19,7 +19,7 @@
 | MALITZIN ANAYANCI | RUBIO      | CAMACHO    |
 | KARLA GUADALUPE   | SANDOVAL   | AYALA      |
 ... */
-
+SELECT nombre,paterno,materno FROM alumnos;
 
 /* 02: Realiza una consulta que muestre el número de control,
        nombre y apellidos de todos los alumnos, ordenados por
@@ -32,7 +32,7 @@
 | 17325061080322 | JESUS PAUL        | ALVAREZ    | LOPEZ      |
 | 17325061080142 | EDWIN             | BERRELLEZA | SOTELO     |
 ... */
-
+SELECT no_control,nombre,paterno,materno FROM alumnos ORDER BY paterno,materno;
 
 /* 03: Realiza una consulta que muestre número de control,
        nombre, apellidos y curp de todos los alumnos, ordenados
@@ -46,7 +46,7 @@
 | 17325061080317 | MAYRA ELIZETH     | VEA        | FALOMIR    | VEFM010921MBCXLYA1 |
 | 17325061080231 | YERCO SEBASTIAN   | VALENZUELA | VIDOVICH   | VAVY011220HSLLDRA4 |
 ... */
-
+SELECT no_control,nombre,paterno,materno,curp FROM alumnos ORDER BY curp DESC;
 
 /* 04: Realiza una consulta que muestre 10 números de
        control solamente (instrucción utilizada: LIMIT)
@@ -64,7 +64,7 @@
 | 17325061080146 |
 | 17325061080148 |
 +----------------+ */
-
+SELECT no_control FROM alumnos LIMIT 10;
 
 /* 05: Realiza una consulta que actualice en la tabla alumnos
        la columna `genero` para que diga si es HOMBRE o MUJER,
@@ -79,7 +79,7 @@
 | 17325061080124 | MELINA SADDAY | PEREZ   | VIZCARRA  | MAZG020301HSLRMRA3 | HOMBRE |
 +----------------+---------------+---------+-----------+--------------------+--------+
 ... */
-
+UPDATE alumnos SET genero = IF (SUBSTR(curp,11,1)='H','HOMBRE','MUJER');
 
 /* 06: Realiza una consulta que actualice en la tabla alumnos
        la columna `estado_2c`, utiliza los caracteres 12-13
