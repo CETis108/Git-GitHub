@@ -24,6 +24,7 @@ SELECT nombre,paterno,materno FROM alumnos;
 /* 02: Realiza una consulta que muestre el número de control,
        nombre y apellidos de todos los alumnos, ordenados por
        apellido paterno y materno (instrucción utilizada: ORDER BY)
+       Ejemplo: SELECT * FROM alumnos ORDER BY no_control;
 +----------------+-------------------+------------+------------+
 | no_control     | nombre            | paterno    | materno    |
 +----------------+-------------------+------------+------------+
@@ -38,6 +39,7 @@ SELECT no_control,nombre,paterno,materno FROM alumnos ORDER BY paterno,materno;
        nombre, apellidos y curp de todos los alumnos, ordenados
        por la curp de forma descendente de la Z a la A
        (instrucción utilizada: ORDER BY ... ASC|DESC)
+       Ejemplo: SELECT * FROM alumnos ORDER BY no_control DESC;
 +----------------+-------------------+------------+------------+--------------------+
 | no_control     | nombre            | paterno    | materno    | curp               |
 +----------------+-------------------+------------+------------+--------------------+
@@ -50,6 +52,7 @@ SELECT no_control,nombre,paterno,materno,curp FROM alumnos ORDER BY curp DESC;
 
 /* 04: Realiza una consulta que muestre 10 números de
        control solamente (instrucción utilizada: LIMIT)
+       Ejemplo: SELECT * FROM alumnos LIMIT 1;
 +----------------+
 | no_control     |
 +----------------+
@@ -72,6 +75,10 @@ SELECT no_control FROM alumnos LIMIT 10;
        actualización (si es H:HOMBRE si es M:MUJER), el campo
        `genero` sólo acepta 'HOMBRE', 'MUJER' ó NULL
        (instrucción utilizada: SUBSTR|SUBSTRING)
+       Ejemplo: SELECT SUBSTR(curp,11,1); Da como resultado H ó M
+       Sintaxis: IF(<condition>, <true>, <false>);
+                 si se cumple la condición se escribe la parte true
+                 sino se escribe la parte false.
 +----------------+---------------+---------+-----------+--------------------+--------+
 | no_control     | nombre        | paterno | materno   | curp               | genero |
 +----------------+---------------+---------+-----------+--------------------+--------+
@@ -85,6 +92,10 @@ UPDATE alumnos SET genero = IF (SUBSTR(curp,11,1)='H','HOMBRE','MUJER');
        la columna `estado_2c`, utiliza los caracteres 12-13
        de la columna `curp` para obtener el valor a guardar
        (instrucción utilizada: SUBSTR|SUBSTRING)
+       Ejemplo: SELECT SUBSTR(curp,12,2); Dará como resultado SL|BC
+       o según sea el caso de cada curp, donde SL es Sinaloa
+       BC es Baja California, y asi sucesivamente una clave para
+       cada entidad de la república.
 +----------------+---------------+---------+-----------+--------------------+--------+-----------+
 | no_control     | nombre        | paterno | materno   | curp               | genero | estado_2c |
 +----------------+---------------+---------+-----------+--------------------+--------+-----------+
@@ -115,6 +126,9 @@ UPDATE alumnos SET genero = IF (SUBSTR(curp,11,1)='H','HOMBRE','MUJER');
        de ingreso hasta 3 años despues, por ejemplo alguien
        que entro en 2017 su generación sería 2017-2020
        (instrucción utilizada: CONCAT, SUBSTR|SUBSTRING|LEFT)
+       Ejemplo: SELECT LEFT(no_control,2); Da como resultado 17.
+       SELECT LEFT(no_control,2)+2000; Da como resultado 2017.
+       SELECT CONCAT('A','B',17,'-','OK'); Da como resultado AB17-OK.
 +----------------+---------------+---------+-----------+--------------------+--------+-----------+------------------+------------+
 | no_control     | nombre        | paterno | materno   | curp               | genero | estado_2c | fecha_nacimiento | generacion |
 +----------------+---------------+---------+-----------+--------------------+--------+-----------+------------------+------------+
@@ -129,6 +143,8 @@ UPDATE alumnos SET genero = IF (SUBSTR(curp,11,1)='H','HOMBRE','MUJER');
        de los alumnos que son mujeres solamente, ordenados
        por apellido paterno y materno
        (instrucción utilizada: CONCAT)
+       Ejemplo: SELECT CONCAT(nombre,paterno,materno);
+       Da como resultado JUSTIN GABRIELABOITEGONZALEZ.
 +-------------------------------------+
 | nombre del alumno                   |
 +-------------------------------------+
@@ -146,6 +162,11 @@ UPDATE alumnos SET genero = IF (SUBSTR(curp,11,1)='H','HOMBRE','MUJER');
        nombre, apellido paterno y materno en una sola columna
        con el título 'apellidos', de los alumnos que
        no nacieron en sinaloa (instrucción utilizada: CONCAT)
+       Ejemplo: SELECT CONCAT(paterno,materno);
+       Da como resultado ABOITEGONZALEZ.
+       Ejemplo: SELECT * FROM alumnos WHERE estado_2c == 'SL';
+       Da como resultado la lista de alumnos que son de Sinaloa
+       deberás preguntar lo opuesto.
 +----------------+----------------+------------------+
 | no_control     | nombre         | apellidos        |
 +----------------+----------------+------------------+
