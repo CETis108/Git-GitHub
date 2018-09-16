@@ -98,6 +98,7 @@ UPDATE alumnos SET genero = IF (SUBSTR(curp,11,1)='H','HOMBRE','MUJER');
        la columna `fecha_nacimiento`, utiliza los caracteres
        5-10 de la columna `curp` para obtener el valor de la
        fecha de nacimiento (instrucción utilizada: DATE)
+       Ejemplo: SELECT DATE('020925'); Da como resultado 2002-09-25
 +----------------+---------------+---------+-----------+--------------------+--------+-----------+------------------+
 | no_control     | nombre        | paterno | materno   | curp               | genero | estado_2c | fecha_nacimiento |
 +----------------+---------------+---------+-----------+--------------------+--------+-----------+------------------+
